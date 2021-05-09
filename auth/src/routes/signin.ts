@@ -1,15 +1,14 @@
-import express, {Request, Response} from 'express';
-import { body} from 'express-validator';
+import express, { Request, Response } from 'express';
+import { body } from 'express-validator';
 import jwt from 'jsonwebtoken';
 
-import { BadRequestError } from '../errors/bad-request-error';
-import { validateRequest } from '../middlewares/validate-request';
+import { BadRequestError, validateRequest } from '@ozerdurtickets/common';
 import { User } from '../models/user';
 import { Password } from '../services/password';
 
 const router = express.Router();
 
-router.post('/api/users/signin',[
+router.post('/api/users/signin', [
     body('email')
         .isEmail()
         .withMessage('Email must be valid'),
@@ -17,35 +16,35 @@ router.post('/api/users/signin',[
         .trim()
         .notEmpty()
         .withMessage('You must supply a password')
-    ],
+],
     validateRequest,
-    async (req : Request,res: Response)=>{
-        const {email, password} = req.body;
+    async (req: Request, res: Response) => {
+        const { email, password } = req.body;
 
-        const existingUser = await User.findOne({email});
-        
-        if(!existingUser){
+        const existingUser = await User.findOne({ email });
+
+        if (!existingUser) {
             throw new BadRequestError("Invalid credentials");
         }
-        
-        const passwordMatch =  await Password.compare(
-            existingUser.password, 
+
+        const passwordMatch = await Password.compare(
+            existingUser.password,
             password
         );
-        
-        if(!passwordMatch){
+
+        if (!passwordMatch) {
             throw new BadRequestError("Invalid credentials");
         }
 
         //Generate JWT
-        const userJwt = jwt.sign({id: existingUser.id, email: existingUser.email}, process.env.JWT_KEY!); // we put an ! mark to avoid ts warning/error about process.env.JWT_KEY may not be defined
+        const userJwt = jwt.sign({ id: existingUser.id, email: existingUser.email }, process.env.JWT_KEY!); // we put an ! mark to avoid ts warning/error about process.env.JWT_KEY may not be defined
 
         //Save it to session
-        req.session ={
+        req.session = {
             jwt: userJwt
-        } ;
+        };
 
         res.status(200).send(existingUser);
-});
+    });
 
-export {router as signinRouter};
+export { router as signinRouter };
