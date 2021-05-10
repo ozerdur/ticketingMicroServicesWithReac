@@ -65,4 +65,17 @@
     tsc --init
     npm install typescript del-cli --save-dev
 
+    npm install node-nats-streaming
+
 # Tickets
+
+# NATS Streaming Server (not NATS)
+
+## nats-test
+
+    npm init -y
+    npm install node-nats-streaming ts-node-dev typescript @types/node
+    tsc --init
+
+    port forwarding command
+        kubectl port-forward <nats pod name> 4222:4222
