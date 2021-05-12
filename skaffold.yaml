@@ -24,6 +24,23 @@ build:
         manual:
           - src: "src/**/*.ts"
             dest: .
+    - image: ozerdur/orders
+      context: orders
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "src/**/*.ts"
+            dest: .
+
+    - image: ozerdur/expiration
+      context: expiration
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "src/**/*.ts"
+            dest: .
     - image: ozerdur/ticketing_client
       context: client
       docker:

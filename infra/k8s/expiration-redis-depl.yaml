@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: expriation-redis-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: expriation-redis
+  template:
+    metadata:
+      labels:
+        app: expriation-redis
+    spec:
+      containers:
+        - name: expriation-redis
+          image: mongo
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: expriation-redis-srv
+spec:
+  selector:
+    app: expriation-redis
+  ports:
+    - name: db
+      protocol: TCP
+      port: 6379
+      targetPort: 6379

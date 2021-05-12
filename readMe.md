@@ -69,6 +69,20 @@
 
 # Tickets
 
+    npm i node-nats-streaming
+    npm install mongoose-update-if-current
+
+# Orders
+
+    npm i node-nats-streaming
+    npm install mongoose-update-if-current
+
+# Expiration
+    npm i bull @types/bull
+
+    docker build -t ozerdur/expiration .
+    docker push ozerdur/expiration
+
 # NATS Streaming Server (not NATS)
 
 ## nats-test
