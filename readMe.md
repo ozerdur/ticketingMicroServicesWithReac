@@ -78,10 +78,19 @@
     npm install mongoose-update-if-current
 
 # Expiration
+
     npm i bull @types/bull
 
     docker build -t ozerdur/expiration .
     docker push ozerdur/expiration
+
+# Payments
+
+    docker build -t ozerdur/payments .
+    docker push ozerdur/payments
+
+    npm install stripe
+    kubectl create secret generic stripe-secret --from-literal=STRIPE_KEY=<secret stripe key>
 
 # NATS Streaming Server (not NATS)
 

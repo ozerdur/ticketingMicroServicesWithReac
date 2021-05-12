@@ -33,6 +33,15 @@ build:
           - src: "src/**/*.ts"
             dest: .
 
+    - image: ozerdur/payments
+      context: payments
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "src/**/*.ts"
+            dest: .
+
     - image: ozerdur/expiration
       context: expiration
       docker:
