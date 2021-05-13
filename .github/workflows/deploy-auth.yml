@@ -1,5 +1,10 @@
-name: deploy-auth
 
+
+env:
+  AZURE_WEBAPP_NAME: ticketing    # set this to your application's name
+  AZURE_WEBAPP_PACKAGE_PATH: '.'      # set this to the path to your web app project, defaults to the repository root
+
+name: deploy-auth
 on:
   push:
     branches:
@@ -26,3 +31,11 @@ jobs:
       # - run: doctl kubernetes cluster kubeconfig save ticketing 
       # - run: kubectl rollout restart deployment auth-depl
       
+
+     # - name: 'Deploy to Azure WebApp'
+     #   uses: azure/webapps-deploy@v2
+     #   with:
+     #     app-name: ${{ env.AZURE_WEBAPP_NAME }}
+     #     publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+     #     package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}      
+
