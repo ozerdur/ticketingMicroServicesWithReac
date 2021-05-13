@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: "ticketing-965e"
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: "ticketing-965e"
+  template:
+    metadata:
+      labels:
+        app: "ticketing-965e"
+    spec:
+      containers:
+        - name: "ticketing-965e"
+          image: "ticketing.azurecr.io/ticketing"
+          ports:
+          - containerPort: 80
