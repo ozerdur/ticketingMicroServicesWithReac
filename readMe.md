@@ -45,6 +45,7 @@
     npm install bootstrap
     npm install axios
 
+    npm i react-stripe-checkout
 
     docker build -t ozerdur/ticketing_client .
     docker push ozerdur/ticketing_client

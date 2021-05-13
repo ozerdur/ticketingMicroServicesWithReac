@@ -1,29 +1,29 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: expriation-redis-depl
+  name: expiration-redis-depl
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: expriation-redis
+      app: expiration-redis
   template:
     metadata:
       labels:
-        app: expriation-redis
+        app: expiration-redis
     spec:
       containers:
-        - name: expriation-redis
+        - name: expiration-redis
           image: mongo
 
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: expriation-redis-srv
+  name: expiration-redis-srv
 spec:
   selector:
-    app: expriation-redis
+    app: expiration-redis
   ports:
     - name: db
       protocol: TCP

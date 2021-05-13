@@ -25,4 +25,4 @@ spec:
             - name: NATS_CLUSTER_ID
               value: ticketing
             - name: REDIS_HOST
-              value: "expriation-redis-srv"
+              value: "expiration-redis-srv"
